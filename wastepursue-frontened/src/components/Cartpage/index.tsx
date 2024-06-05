@@ -7,7 +7,7 @@ import Cart from '../../app/cart/page';
 type ParamsType = {
     productId: string,
     // userId: string,
-    
+
 }
 const Cartpage = (params: ParamsType) => {
     const [cartProducts, setCartProducts] = useState<string[]>([]);
@@ -41,40 +41,39 @@ const Cartpage = (params: ParamsType) => {
         }
     };
 
-    
-    const decodedPayload = decodeJwtToken(localStorage.getItem('jwt') || '');
 
-    if (decodedPayload) {
-        console.log('Decoded payload:', decodedPayload);
-    } else {
-        console.log('Failed to decode JWT token.');
-    }
 
-    
 
-   
+
+
+
+
 
     const getProductById = async (pid: any) => {
+        const decodedPayload = decodeJwtToken(localStorage.getItem('jwt') || '');
+
+       
         try {
-            // console.log(`${decodedPayload.userId}`,"jjknkjnjnkjnkk");
+            // console.log(`${decodedPayload.userId}`,"jjknkjnjnkjnkk");yarn build
+
             const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
-            
+
             const response = await axios.get(`${BASE_URL}/api/cart/getcart/${decodedPayload.userId}`);
-            
-            
+
+
             setCartDetails(response.data?.items);
-            
-            
-            
+
+
+
         } catch (error) {
             console.error('Error fetching product by ID:', error);
             return null;
         }
     };
-    
-    
 
-    
+
+
+
 
     useEffect(() => {
         const fetchCartProducts = async () => {
@@ -98,16 +97,17 @@ const Cartpage = (params: ParamsType) => {
     }, []);
 
     useEffect(() => {
+        const decodedPayload = decodeJwtToken(localStorage.getItem('jwt') || '');
         if (pId && decodedPayload?.userId) {
             console.log("jgyftdrsreaeawe");
             // getProductById(pId)
             // addToCart();
         }
-    }, [pId, decodedPayload])
+    }, [pId])
 
     return (
         <div className="container mx-auto py-8 pt-[100px]">
-          
+
         </div>
     );
 };

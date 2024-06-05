@@ -3,6 +3,7 @@
 # dependencies
 /wastepursue-backened/node_modules
 /wastepursue-frontend/node_modules
+/wastepursue-frontend/.next
 /.pnp
 .pnp.js
 .yarn/install-state.gz

@@ -10,20 +10,20 @@ interface CardData {
     totalQuantity: any;
     product: any;
     name: string;
-  
+
     price: string;
     url: string;
     description: string;
-    
-  }
 
-const Cartpage= () => {
+}
+
+const Cartpage = () => {
     const { pId }: any = useParams();
     const [cartDetails, setCartDetails] = useState<CardData[]>([]);
     const [totPrice, setTotPrice] = useState<number>(0);
     const [editMode, setEditMode] = useState<boolean | null>(null);
     const [newQuantity, setNewQuantity] = useState<number>(1);
-    
+
     const decodeJwtToken = (token: string) => {
         try {
             const [_, payloadEncoded] = token.split('.');
@@ -35,9 +35,9 @@ const Cartpage= () => {
         }
     };
 
-    const decodedPayload = decodeJwtToken(localStorage.getItem('jwt') || '');
 
     const getProductById = async () => {
+        const decodedPayload = decodeJwtToken(localStorage.getItem('jwt') || '');
         const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
         try {
             const response = await axios.get(`${BASE_URL}/api/cart/getcart/${decodedPayload.userId}`);
@@ -62,8 +62,10 @@ const Cartpage= () => {
         console.log(`Buy button clicked for product with ID ${productId}`);
     };
 
-    const handleDeleteClick = async (productId) => {
+    const handleDeleteClick = async (productId: any) => {
         const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
+        const decodedPayload = decodeJwtToken(localStorage.getItem('jwt') || '');
+
         try {
             await axios.delete(`${BASE_URL}/api/cart/cart/${decodedPayload.userId}/${productId}`);
             setCartDetails(cartDetails.filter(product => product.product._id !== productId));
@@ -84,6 +86,8 @@ const Cartpage= () => {
             return;
         }
         try {
+            const decodedPayload = decodeJwtToken(localStorage.getItem('jwt') || '');
+
             const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
             await axios.put(`${BASE_URL}/api/cart/cart/${decodedPayload.userId}/${productId}`, {
                 quantity: newQuantity
@@ -146,7 +150,7 @@ const Cartpage= () => {
                                             </td>
                                             <td className="px-4 py-2">${product.product?.price * product.totalQuantity}</td>
                                             <td className="px-4 py-2">
-                                                {editMode === product.product?._id?  (
+                                                {editMode === product.product?._id ? (
                                                     <button
                                                         onClick={() => handleUpdateClick(product.product?._id)}
                                                         className="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded"
@@ -200,3 +204,36 @@ const Cartpage= () => {
 };
 
 export default Cartpage;
+
+
+
+
+
+
+
+
+
+// useEffect(() => {
+//     const getProductById = async () => {
+//         if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+//             const token = localStorage.getItem('jwt') || '';
+//             const decodedPayload = decodeJwtToken(token);
+
+//             if (!decodedPayload) {
+//                 console.error('Invalid JWT token');
+//                 return;
+//             }
+
+//             const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+//             try {
+//                 const response = await axios.get(`${BASE_URL}/api/cart/getcart/${decodedPayload.userId}`);
+//                 localStorage.setItem('count', response?.data.length);
+//                 setCartDetails(response.data);
+//             } catch (error) {
+//                 console.error('Error fetching product by ID:', error);
+//             }
+//         }
+//     };
+
+//     getProductById();
+// }, []);

@@ -39,16 +39,12 @@ const AddressPage = () => {
         }
     };
 
-    const decodedPayload = decodeJwtToken(localStorage.getItem('jwt') || '');
+    // const decodedPayload = decodeJwtToken(localStorage.getItem('jwt') || '');
 
    
-   
-
-
-
-
 
     const handleChange = (e: { target: { name: any; value: any; }; }) => {
+        const decodedPayload = decodeJwtToken(localStorage.getItem('jwt') || '');
         setAddress({
             ...address,
             [e.target.name]: e.target.value
@@ -60,6 +56,7 @@ const AddressPage = () => {
         // alert('hello')
         const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
         // console.log( BASE_URL,"baseurl<<<<<<<<");
+        const decodedPayload = decodeJwtToken(localStorage.getItem('jwt') || '');
         
         try {
             const response = await axios.post(`${BASE_URL}/api/user/address/${decodedPayload.userId}`, address);
