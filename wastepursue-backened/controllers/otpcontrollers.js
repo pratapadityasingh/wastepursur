@@ -17,7 +17,7 @@ const sendOTPByEmail = async (otp, recipientEmail) => {
   try {
     const info = await transporter.sendMail({
       from: `${process.env.MAIL_FROM}`,
-      to:`${process.env.MAIL_TO}`,
+      to:`${recipientEmail}`,
       subject: "Your OTP",
       text: `Your OTP is: ${otp}`,
     });
