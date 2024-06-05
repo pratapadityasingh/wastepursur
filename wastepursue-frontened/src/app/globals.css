@@ -1,0 +1,152 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  /* color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb)); */
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+.heightmain{
+  height: 15rem;
+}
+.root h2 {
+    
+  color: white;
+  font-size: 62px;
+  font-weight: 900;
+  font-family: Fira Sans, sans-serif !important;
+  z-index: 999;
+  text-align:start;
+}
+
+.root h2 span {
+  color: #cfff13;
+}
+
+.root p {
+  
+ 
+  
+  font-family: Fira Sans, sans-serif !important;
+
+  text-align: start;
+
+}
+.box_shadow
+{
+  box-shadow: 0px 0px 10px 0px #cfff13;
+
+}
+.backgr
+{
+  background-image: url(../../public/111.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+}
+.boybg{
+  position: relative;
+}
+.boybg::before{
+  content: "";
+  background-image: url(../../public/secondut.png);
+  position: absolute;
+  width: 400px;
+  height: 450px;
+  background-repeat: no-repeat;
+  bottom: -28%;
+  right: -18%;
+}
+.footer_bg {
+  background-color: #060B27;
+  background-image: url(../../public/footerbg.e4a9ec00.png);
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+}
+.bgghk
+{
+  background-image: url(../../public/111.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.bg-hero{
+  background-image: url(../../public/111.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.bg-card
+{
+  background-image: url(../../public/fouthbg.0f8b5bd5.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+.contact_bg {
+  background: #cfff13;
+  border-radius: 0 300px 0 0;
+  height: 573px;
+  z-index: 9;
+
+}
+.aboutus{
+  background-image: url(../../public/fouthbg.0f8b5bd5.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.why_us_col {
+  align-items: center;
+  background: #f6faf5;
+  border-radius: 15px;
+  box-shadow: 2px 2px 6px #257430;
+  display: flex;
+  height: 145px;
+  justify-content: space-around;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+}
+@media (max-width:700px){
+       .mobile_header{
+        display:none
+       }
+       .contact_image{
+        display: none;
+       }
+       .boybg::before{
+        display: none;
+       }
+       .bg-hero{
+        overflow: hidden;
+       }
+}
