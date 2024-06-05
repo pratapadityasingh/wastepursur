@@ -39,7 +39,8 @@ const Product = () => {
                     return;
                 }
                 try {
-                    const response = await fetch(`process.env.NEXT_PUBLIC_BASE_URL/api/products/getbyidproduct/${id}`);
+                    const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
+                    const response = await fetch(`${BASE_URL}/api/products/getbyidproduct/${id}`);
                     if (!response.ok) throw new Error('Network response was not ok');
                     const data = await response.json();
                     setProduct(data);
@@ -58,7 +59,8 @@ const Product = () => {
             return;
         }
         try {
-            await axios.post(`process.env.NEXT_PUBLIC_BASE_URL/api/cart/addtocart/${decodedPayload.userId}/${product._id}`);
+            const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
+            await axios.post(`${BASE_URL}/api/cart/addtocart/${decodedPayload.userId}/${product._id}`);
             setIsSuccess(true);
             router.push("/addcart");
         } catch (error) {

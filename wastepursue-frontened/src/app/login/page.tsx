@@ -19,15 +19,16 @@ const Login = () => {
         e.preventDefault();
 
         try {
-            const apiUrl = 'process.env.NEXT_PUBLIC_BASE_URL/api/user/login';
+            const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
+            const apiUrl = `${BASE_URL}/api/user/login`;
             const response = await axios.post(apiUrl, { email, password }, { withCredentials: true });
 
             if (!response?.data?.success) {
                 throw new Error(response?.data?.message);
             }
 
-
-            const otpApiUrl = 'process.env.NEXT_PUBLIC_BASE_URL/api/otp/send-otp';
+            
+            const otpApiUrl = `${BASE_URL}/api/otp/send-otp`;
             const otpResponse = await axios.post(otpApiUrl, { email }, { withCredentials: true });
 
             if (!otpResponse?.data?.success) {
@@ -49,7 +50,8 @@ const Login = () => {
         e.preventDefault();
 
         try {
-            const apiUrl = 'process.env.NEXT_PUBLIC_BASE_URL/api/otp/verify-otp';
+            const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
+            const apiUrl = `${BASE_URL}/api/otp/verify-otp`;
             const response = await axios.post(apiUrl, { email, otp }, { withCredentials: true });
 
             if (!response?.data?.success) {
