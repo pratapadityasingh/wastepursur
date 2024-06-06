@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { UserProvider } from "../components/context";
 import Registration from "../components/Registrationpage";
+import { ToastContainer } from "react-toastify";
 
 
 
@@ -28,7 +29,9 @@ export default function RootLayout({
         
         <UserProvider > 
         <Header/>
+        <ToastContainer/>
           {children}
+
           <Footer/>
         </UserProvider>
         

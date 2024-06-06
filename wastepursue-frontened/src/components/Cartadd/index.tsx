@@ -106,37 +106,39 @@ const Cartpage = () => {
 
     return (
         <>
-            <div className="container mx-auto py-8 pt-[100px] h-screen bg-[#060B27] ">
-                <div className=' flex-col justify-center items-center align-baseline'>
-                    <h1 className="text-2xl font-bold mb-4 text-center">Cart</h1>
+        <section className='py-8 pt-[100px] min-h-screen w-full lg:flex lg:justify overflow-x-auto bg-[#060B27] max-w-full'>
+        <div className="  ">
+                <div className="flex flex-col  justify-center ">
+                    <h1 className="text-2xl font-bold mb-4 text-center text-white">Cart</h1>
+                    <div>
                     {cartDetails.length > 0 ? (
-                        <div className="overflow-x-auto w-full flex justify-center text-white ">
-                            <table className="table-auto w-[1200px] border border-white rounded">
-                                <thead className='w-full text-center'>
+                        <div className="  text-white">
+                            <table className=" border border-white rounded-lg">
+                                <thead className="  ">
                                     <tr>
-                                        <th className="px-4 py-5">Image</th>
-                                        <th className="px-4 py-2">Name</th>
-                                        <th className="px-4 py-2">Description</th>
-                                        <th className="px-4 py-2">Price</th>
-                                        <th className="px-4 py-2">Quantity</th>
-                                        <th className="px-4 py-2">Total</th>
-                                        <th className="px-4 py-2">Action</th>
+                                        <th className="pl-5 py-5 text-left">Image</th>
+                                        <th className="px-5 py-2 text-left">Name</th>
+                                        <th className="px-5 py-2 text-left">Description</th>
+                                        <th className="px-5 py-2 text-left ">Price</th>
+                                        <th className="px-5 py-2 text-left">Quantity</th>
+                                        <th className="px-5 py-2 text-left">Total</th>
+                                        <th className="px-5 py-2 text-left">Action</th>
                                     </tr>
                                 </thead>
-                                <tbody className='w-full text-center'>
+                                <tbody className="">
                                     {cartDetails.map((product: CardData) => (
-                                        <tr key={product.product?._id} className="border-t border-gray-200">
-                                            <td className="px-4 py-2 flex justify-center">
+                                        <tr key={product.product?._id} className="border-t border-gray-200 ">
+                                            <td className="py-2  pl-5 text-left flex justify-start">
                                                 <img
                                                     src={product.product?.url}
                                                     alt={product.product?.name}
-                                                    className="h-16 w-18 object-cover rounded-2xl"
+                                                    className="h-16 w-18 object-cover rounded"
                                                 />
                                             </td>
-                                            <td className="px-4 py-2">{product.product?.name}</td>
-                                            <td className="px-4 py-2">{product.product?.description}</td>
-                                            <td className="px-4 py-2">${product.product?.price}</td>
-                                            <td className="px-4 py-2">
+                                            <td className="px-5  text-left py-2">{product.product?.name}</td>
+                                            <td className="px-5  text-left py-2">{product.product?.description}</td>
+                                            <td className="px-5  text-left py-2">${product.product?.price}</td>
+                                            <td className="px-5  text-left py-2">
                                                 {editMode === product.product?._id ? (
                                                     <input
                                                         type="number"
@@ -148,8 +150,8 @@ const Cartpage = () => {
                                                     product.totalQuantity
                                                 )}
                                             </td>
-                                            <td className="px-4 py-2">${product.product?.price * product.totalQuantity}</td>
-                                            <td className="px-4 py-2">
+                                            <td className="px-5  text-left py-2">${product.product?.price * product.totalQuantity}</td>
+                                            <td className="px-5 flex text-left py-2">
                                                 {editMode === product.product?._id ? (
                                                     <button
                                                         onClick={() => handleUpdateClick(product.product?._id)}
@@ -167,24 +169,22 @@ const Cartpage = () => {
                                                 )}
                                                 <button
                                                     onClick={() => handleDeleteClick(product.product?._id)}
-                                                    className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded ml-2"
+                                                    className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-2 rounded ml-2"
                                                 >
                                                     Delete
                                                 </button>
-
                                             </td>
                                         </tr>
                                     ))}
                                     <tr className="border-t border-gray-600">
-                                        <td className="px-4 py-2"></td>
-                                        <td className="px-4 py-2"></td>
-                                        <td className="px-4 py-2 font-bold">Total:</td>
-                                        <td className="px-4 py-2 font-bold">${totPrice}</td>
-                                        <td className="px-4 py-2 gap-11">
+                                        <td className="px-2 py-2"></td>
+                                        <td className="px-2 py-2"></td>
+                                        <td className="px-2 py-2 font-bold">Total:</td>
+                                        <td className="px-2 py-2 font-bold">${totPrice}</td>
+                                        <td className="px-2 py-2 gap-11">
                                             <Link href="/address" passHref>
                                                 <button
                                                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded ml-2"
-
                                                 >
                                                     Buy now
                                                 </button>
@@ -195,10 +195,15 @@ const Cartpage = () => {
                             </table>
                         </div>
                     ) : (
-                        <p className="mt-4">No products in the cart.</p>
+                        <p className="mt-4 text-white">No products in the cart.</p>
                     )}
+                    </div>
                 </div>
             </div>
+        </section>
+         
+
+
         </>
     );
 };

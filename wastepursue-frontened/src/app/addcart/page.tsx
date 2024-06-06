@@ -4,7 +4,7 @@ import Cartadd from '../../components/Cartadd'
 
 const Page = () => {
   return (
-    <div>
+    <div className=''>
       <Cartadd/>
     </div>
   )

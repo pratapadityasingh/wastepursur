@@ -5,6 +5,8 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
     const [email, setEmail] = useState<string>('');
@@ -24,7 +26,9 @@ const Login = () => {
             const response = await axios.post(apiUrl, { email, password }, { withCredentials: true });
 
             if (!response?.data?.success) {
+                toast.error('Login failed. Please try again.');
                 throw new Error(response?.data?.message);
+                
             }
 
             
@@ -32,10 +36,13 @@ const Login = () => {
             const otpResponse = await axios.post(otpApiUrl, { email }, { withCredentials: true });
 
             if (!otpResponse?.data?.success) {
+                toast.error('Failed to send OTP. Please try again.');
                 throw new Error(otpResponse?.data?.message);
+                
             }
 
             setShowOtpInput(true);
+            toast.success('OTP sent successfully. Please check your email.');
 
             const token = response.data.token;
             localStorage.setItem('jwt', token);
@@ -58,11 +65,13 @@ const Login = () => {
                 throw new Error(response?.data?.message);
             }
 
-            router.push('/home');
+            
         } catch (error) {
             console.error('Error verifying OTP:', error);
             setError(error.message);
         }
+        toast.success('Login sucessfully we directing you.');
+        router.push('/home');
     };
 
     return (
@@ -161,7 +170,7 @@ const Login = () => {
 
                 </div>
             </div>
-
+            
         </>
 
 

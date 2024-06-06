@@ -36,6 +36,7 @@ const Registration = () => {
             });
 
             if (!response.ok) {
+                toast.error('Registration Failed! Fill all field');
                 throw new Error('Failed to register');
             }
 
@@ -45,6 +46,7 @@ const Registration = () => {
             setPhone('');
 
             const data = await response.json();
+            toast.success('Registration success');
             console.log('Registration successful:', data);
             router.push('/login');
         } catch (error) {
@@ -52,7 +54,9 @@ const Registration = () => {
             if (error.message.includes('email already exists')) {
                 toast.error('Email already exists');
             } else {
+                toast.error('Registration already exist or failed');
                 setErrorMessage('Registration already exist or failed');
+                
             }
         }
     };

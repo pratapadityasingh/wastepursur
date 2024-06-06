@@ -6,6 +6,8 @@ import Image from 'next/image';
 import axios from 'axios';
 import Link from 'next/link';
 
+import StarRatings from 'react-star-ratings';
+
 const Product = () => {
     const [product, setProduct] = useState(null);
     const [isSuccess, setIsSuccess] = useState(false);
@@ -25,32 +27,55 @@ const Product = () => {
         }
     };
 
-    // const decodedPayload = decodeJwtToken(localStorage.getItem('jwt') || '');
 
+
+    // useEffect(() => {
+
+    //     const fetchProduct = async () => {
+    //         if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+
+    //             const token = localStorage.getItem('jwt') || '';
+    //             const decodedPayload = decodeJwtToken(token);
+
+    //             if (!decodedPayload) {
+    //                 console.error('Invalid JWT token');
+    //                 return;
+    //             }
+    //             try {
+    //                 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
+    //                 const response = await fetch(`${BASE_URL}/api/products/getbyidproduct/${id}`);
+    //                 if (!response.ok) throw new Error('Network response was not ok');
+    //                 const data = await response.json();
+    //                 setProduct(data);
+    //             } catch (error) {
+    //                 console.error('Error fetching product:', error);
+    //             }
+    //         };
+    //         fetchProduct();
+    //     }
+    // }, [id]);
     useEffect(() => {
-
-        const fetchProduct = async () => {
-            if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
-                const token = localStorage.getItem('jwt') || '';
-                const decodedPayload = decodeJwtToken(token);
-
-                if (!decodedPayload) {
-                    console.error('Invalid JWT token');
-                    return;
+        const fetchPost = async () => {
+            const decodedPayload = decodeJwtToken(localStorage.getItem('jwt') || '');
+            try {
+                const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
+                const response = await fetch(`${BASE_URL}/api/products/getbyidproduct/${id}`)
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
                 }
-                try {
-                    const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
-                    const response = await fetch(`${BASE_URL}/api/products/getbyidproduct/${id}`);
-                    if (!response.ok) throw new Error('Network response was not ok');
-                    const data = await response.json();
-                    setProduct(data);
-                } catch (error) {
-                    console.error('Error fetching product:', error);
-                }
-            };
-            fetchProduct();
-        }
-    }, [id]);
+                const data = await response.json();
+                console.log(data, 'data');
+
+                setProduct(data);
+            } catch (error) {
+                console.error('Error fetching post:', error);
+            }
+        };
+
+
+        fetchPost();
+
+    }, []);
 
     const addToCart = async () => {
         const decodedPayload = decodeJwtToken(localStorage.getItem('jwt') || '');
@@ -70,39 +95,63 @@ const Product = () => {
 
     return (
         product && (
-            <section className="text-gray-600 body-font overflow-hidden bg-[#060b27]">
-                <div className="container px-5 py-24 mx-auto">
-                    <div className="lg:w-4/5 mx-auto flex flex-wrap">
-                        <Image
-                            alt={product.name}
-                            className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
-                            src={product.url}
-                            width={300}
-                            height={200}
-                        />
-                        <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-                            <h1 className="text-3xl text-white title-font font-medium mb-1">{product.name}</h1>
-                            <p className="leading-relaxed mb-4">{product.description}</p>
+            <>
+                <section>
+                    <div className='lg:w-full flex justify-center h-screen bg-[#060B27] items-center pt-[100px]'>
 
+                        <div className=" lg:w-[400px] border box_shadow flex justify-center p-5 rounded-3xl  ">
+                            <div className=' rounded-lg'>
+                                <Image
+                                    alt={product.name}
+                                    className="lg:w-[400px] w-full lg:h-auto h-64 object-cover object-center rounded"
+                                    src={product.url}
+                                    width={300}
+                                    height={200}
+                                />
+                                <div className='gap-4 flex pt-2 items-center'>
+                                    <p className='text-white text-base p-1  font-bold '>Rating : </p>
+                                    <StarRatings
 
-                            <div className="flex">
-                                <span className="title-font font-medium text-2xl text-white">${product.price}</span>
-                                <button
-                                    onClick={addToCart}
-                                    className="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 ml-3 rounded"
-                                >
-                                    Add to Cart
-                                </button>
-                                <Link href="/pay"
-                                    className="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 ml-3 rounded">
-                                    Buy Now
+                                        starRatedColor="blue"
+                                        starDimension="15px"
+                                        starSpacing="5px"
+                                        numberOfStars={5}
+                                        name='rating'
+                                    />
+                                
+                                </div>
+                                <div className=" w-full     ">
+                                    <h1 className=" text-white text-base p-1  font-bold ">Name :{product.name}</h1>
+                                    <p className="leading-relaxed text-white text-base p-1  font-bold ">About :{product.description}</p>
+                                    <span className="text-base p-1  font-bold  text-white">Price : ${product.price}</span>
 
-                                </Link>
+                                    <div className="flex justify-between p-1">
+
+                                        <button
+                                            onClick={addToCart}
+                                            className="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4  rounded"
+                                        >
+                                            Add to Cart
+                                        </button>
+                                        <Link href="/pay"
+                                            className="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4  rounded">
+                                            Buy Now
+
+                                        </Link>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
                     </div>
-                </div>
-            </section>
+
+
+
+
+
+
+                </section>
+            </>
         )
     );
 };
