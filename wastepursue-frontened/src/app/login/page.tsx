@@ -77,7 +77,7 @@ const Login = () => {
     return (
         <>
             <div className='container mx-auto'>
-                <div className='flex lg:flex-row flex-col bg-[#060b27] lg:px-[100px]  lg:py-[200px] pt-[100px] pb-[50px] px-[30px] backgr justify-evenly '>
+                <div className='flex lg:flex-row flex-col bg-[#060b27] lg:px-[100px]  lg:py-[200px] pt-[120px] pb-[50px] px-[30px] backgr justify-evenly '>
                     <div className="lg:w-[60%]  w-full" >
                         <div className="row root  boybg">
                             <div className="w-full text-white font-black text-5xl ">

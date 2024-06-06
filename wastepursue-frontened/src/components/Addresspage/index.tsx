@@ -81,10 +81,10 @@ const AddressPage = () => {
     return (
         <>
             <div className='w-full bg-[#060B27]  h-screen text-white'>
-                <div className="container mx-auto py-[100px] w-[840px]">
+                <div className="container mx-auto py-[100px] lg:w-[840px] w-full lg:p-0 p-5">
                     <h1 className="text-2xl font-bold mb-8">Shipping Address</h1>
                     <form onSubmit={handleSubmit} className="space-y-4 ">
-                        <div className='flex gap-5 '>
+                        <div className='flex flex-col lg:flex-row gap-5 '>
                             <div>
                                 <label className="block mb-1">Full Name</label>
                                 <input
@@ -92,7 +92,7 @@ const AddressPage = () => {
                                     name="fullName"
                                     value={address.fullName}
                                     onChange={handleChange}
-                                    className="w-[400px] border rounded-md text-black px-3 py-2" />
+                                    className="lg:w-[400px] w-full border rounded-md text-black px-3 py-2" />
                             </div>
                             <div>
                                 <label className="block mb-1">Address Line 1</label>
@@ -101,10 +101,10 @@ const AddressPage = () => {
                                     name="addressLine1"
                                     value={address.addressLine1}
                                     onChange={handleChange}
-                                    className="w-[400px] border rounded-md px-3 text-black py-2" />
+                                    className="lg:w-[400px] w-full border rounded-md px-3 text-black py-2" />
                             </div>
                         </div>
-                        <div className='flex gap-5 '>
+                        <div className='flex  flex-col lg:flex-row  gap-5 '>
                             <div>
                                 <label className="block mb-1">Address Line 2</label>
                                 <input
@@ -112,7 +112,7 @@ const AddressPage = () => {
                                     name="addressLine2"
                                     value={address.addressLine2}
                                     onChange={handleChange}
-                                    className="w-[400px] border rounded-md px-3 text-black py-2" />
+                                    className="lg:w-[400px] w-full border rounded-md px-3 text-black py-2" />
                             </div>
                             <div>
                                 <label className="block mb-1">City</label>
@@ -121,11 +121,11 @@ const AddressPage = () => {
                                     name="city"
                                     value={address.city}
                                     onChange={handleChange}
-                                    className="w-[400px] border rounded-md px-3  text-black py-2" />
+                                    className="lg:w-[400px] w-full border rounded-md px-3  text-black py-2" />
                             </div>
                         </div>
 
-                        <div className='flex  gap-5'>
+                        <div className='flex   flex-col lg:flex-row  gap-5'>
                             <div>
                                 <label className="block mb-1">State</label>
                                 <input
@@ -133,7 +133,7 @@ const AddressPage = () => {
                                     name="state"
                                     value={address.state}
                                     onChange={handleChange}
-                                    className="w-[400px] border rounded-md px-3 text-black py-2" />
+                                    className="lg:w-[400px] w-full border rounded-md px-3 text-black py-2" />
                             </div>
                             <div>
                                 <label className="block mb-1">Postal Code</label>
@@ -142,11 +142,11 @@ const AddressPage = () => {
                                     name="postalCode"
                                     value={address.postalCode}
                                     onChange={handleChange}
-                                    className="w-[400px] border rounded-md px-3 text-black py-2" />
+                                    className="lg:w-[400px] w-full border rounded-md px-3 text-black py-2" />
                             </div>
 
                         </div>
-                        <div className='flex gap-5 '>
+                        <div className=' '>
                             <div>
                                 <label className="block mb-1">Country</label>
                                 <input
@@ -154,7 +154,7 @@ const AddressPage = () => {
                                     name="country"
                                     value={address.country}
                                     onChange={handleChange}
-                                    className="w-[400px] border rounded-md px-3 text-black py-2" />
+                                    className="lg:w-[400px] w-full border rounded-md px-3 text-black py-2" />
                             </div>
                             
 

@@ -97,9 +97,9 @@ const Product = () => {
         product && (
             <>
                 <section>
-                    <div className='lg:w-full flex justify-center h-screen bg-[#060B27] items-center pt-[100px]'>
-
-                        <div className=" lg:w-[400px] border box_shadow flex justify-center p-5 rounded-3xl  ">
+                    <div className='lg:w-full flex flex-col justify-center h-screen bg-[#060B27]  lg:pt-[150px]  lg:pl-[550px]  px-3'>
+                          <h1 className='text-white text-2xl p-3 font-bold'>Product Details</h1>
+                        <div className=" lg:w-[400px] w-full border box_shadow flex justify-center p-5 rounded-3xl  h-[500px]  ">
                             <div className=' rounded-lg'>
                                 <Image
                                     alt={product.name}
